@@ -2,4 +2,46 @@
     
     {% block content %}
     <h1 class="text-center my-3">Student Management</h1>
+    <h1 class="text-center my-3">List of Students</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>SNO</th>
+                                    <th>Roll</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th>Phone</th>
+                                 
+                                </tr>
+                            </thead>
+                            <tbody>
+                       
+                                {% for std in students %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>{{std.roll}}</td>
+                                        <td>{{std.name}}</td>
+                                        <td>{{std.email}}</td>
+                                        <td>{{std.address}}</td>
+                                        <td>{{std.phone}}</td>
+                                        <td><a href="/my_app/delete/{{std.id}}" class="btn btn-danger md-sm">Delete</a>
+                                            <a href="/my_app/update/{{std.id}}" class="btn btn-success md-sm">Update</a>
+                                        </td>
+                                       
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {% endblock content %}
