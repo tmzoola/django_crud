@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-
+from django.views.decorators.csrf import csrf_protect
 from .models import Student
 
 # Create your views here.
@@ -12,6 +12,7 @@ def home(request):
     
     return render(request, 'my_app/home.html',{ 'students':students})
 
+@csrf_protect 
 def add(request):
     
     if request.method == "POST":
@@ -37,6 +38,8 @@ def update(request,id):
 
     return render(request, "my_app/update.html",{'student':student})
 
+
+@csrf_protect   
 def update_new(request,id):
     student = Student.objects.get(pk=id)
     student.roll = request.POST['roll']
